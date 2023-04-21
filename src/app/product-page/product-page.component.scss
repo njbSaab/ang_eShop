@@ -1,0 +1,16 @@
+.product{
+  .header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  h2{
+    margin-bottom: .5rem;
+  }
+}
+.flex{
+  display: flex;
+}
+.product-price{
+  margin-left: 200px;
+}

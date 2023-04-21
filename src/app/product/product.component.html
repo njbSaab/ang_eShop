@@ -1,0 +1,13 @@
+<div class="text-center">
+ <h2>{{product.title}}</h2>
+
+  <div class="cart">
+    <div class="cart-img">
+    <quill-view-html [content]="product.photo ? product.photo : ''"></quill-view-html>
+    </div>
+    <h2>price: {{product.price}}</h2>
+  </div>
+    <button [routerLink]="['/product', product.id]" class="btn btn-dark">Open</button>
+    <button [routerLink]="['/cart']" class="btn btn-dark" (click)="addProduct(product)">Add to cart</button>
+
+</div>

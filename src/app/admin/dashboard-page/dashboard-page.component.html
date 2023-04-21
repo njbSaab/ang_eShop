@@ -1,0 +1,41 @@
+<div *ngIf="products.length; else loading">
+  <h2 class="text-center">Dashboard of products</h2>
+
+  <div class="form-control">
+    <input type="text" placeholder="Find a product..." [(ngModel)]="productName">
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>DATE of creation</th>
+        <th class="text-center">Open</th>
+        <th class="text-center">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let product of products | search : productName; let idx = index"
+          style="border-bottom: 1px solid rgba(1,1,1, .1)">
+        <td>{{idx + 1}}</td>
+        <td>{{product.title}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.date | date : 'short'}}</td>
+        <td>
+          <button class="btn btn-dark" [routerLink]="['/admin', 'product', product.id, 'edit']" style="margin: 0" >Open</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="remove(product.id)" style="margin: 0;">Delete</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #loading>
+  <p class="text-center">Loading...</p>
+</ng-template>

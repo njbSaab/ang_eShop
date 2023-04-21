@@ -9,7 +9,8 @@ import {DashboardPageComponent} from "./dashboard-page/dashboard-page.component"
 import {EditPageComponent} from "./edit-page/edit-page.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "../shared/auth.guard";
-
+import {QuillModule} from "ngx-quill";
+import {SearchPipe} from "../shared/search.pipe";
 
 @NgModule({
   declarations: [
@@ -18,28 +19,27 @@ import {AuthGuard} from "../shared/auth.guard";
     DashboardPageComponent,
     AddPageComponent,
     EditPageComponent,
-    OrdersPageComponent
+    OrdersPageComponent,
+    SearchPipe
   ],
-  imports:[
+  imports: [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    QuillModule.forRoot(),
     RouterModule.forChild([
       {
-        path: '', component:AdnimLayuotComponent, children:[
+        path: '', component: AdnimLayuotComponent, children: [
           {path: '', redirectTo: '/admin/login', pathMatch: "full"},
-          {path:'login', component: LoginPageComponent},
-          {path:'dashboard', component: DashboardPageComponent, canActivate:[AuthGuard]},
-          {path:'add', component: AddPageComponent, canActivate:[AuthGuard]},
-          {path:'orders', component: OrdersPageComponent, canActivate:[AuthGuard]},
-          {path:'product/:id/edit', component: EditPageComponent, canActivate:[AuthGuard]},
+          {path: 'login', component: LoginPageComponent},
+          {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
+          {path: 'add', component: AddPageComponent, canActivate: [AuthGuard]},
+          {path: 'orders', component: OrdersPageComponent, canActivate: [AuthGuard]},
+          {path: 'product/:id/edit', component: EditPageComponent, canActivate: [AuthGuard]},
         ]
       }
     ])
   ],
   exports: [],
 })
-
-export class AdminModule{
-
-}
+export class AdminModule{}

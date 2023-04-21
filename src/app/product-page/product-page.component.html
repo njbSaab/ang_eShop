@@ -1,0 +1,38 @@
+<div *ngIf="products$ | async as product; else loading">
+  <div class="product">
+    <div class="header right">
+      <button routerLink="/" class="btn btn-dark">Back</button>
+    </div>
+
+    <div class="flex product-cart">
+
+      <div class="item text-center">
+        <h2>{{product.title}}</h2>
+
+        <div class="flex-center product-img">
+          <quill-view-html [content]="product.photo"></quill-view-html>
+        </div>
+      </div>
+
+      <div class="item">
+        <h2>Information:</h2>
+
+        <div class="product-info">
+          <quill-view-html [content]="product.info"></quill-view-html>
+        </div>
+
+        <div class="product-price">
+          <h2>Price {{product.price}}</h2>
+
+          <button class="btn btn-dark" [routerLink]="['/cart']" (click)="addProduct(product)">Add to cart</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p class="text-center">Loading...</p>
+</ng-template>

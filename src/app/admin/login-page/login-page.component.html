@@ -1,0 +1,34 @@
+<div class="form-container">
+  <div class="form-box">
+
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <h2>Login as admin</h2>
+
+      <!--email -->
+      <div class="form-control">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" class="input">
+        <div class="validation" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+          <small *ngIf="form.get('email')?.errors?.['required']">Enter Email</small>
+          <small *ngIf="form.get('email')?.errors?.['email']">Enter valid Email</small>
+        </div>
+      </div>
+
+      <!--password -->
+      <div class="form-control">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" class="input">
+        <div class="validation" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+          <small *ngIf="form.get('password')?.errors?.['required']">Enter Password</small>
+          <small *ngIf="form.get('password')?.errors?.['minlength']">
+            Password must be {{ form.get('password')?.errors?.['minlength'].requiredLength }} characters.
+            Now it's {{ form.get('password')?.errors?.['minlength'].actualLength }} characters.
+          </small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid || submitted">Submit</button>
+    </form>
+  </div>
+</div>
